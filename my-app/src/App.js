@@ -6,18 +6,17 @@ import './App.css';
 
 class App extends React.Component {
   state = {
-    userData: [],
+    userData: {},
   };
 
 
   componentDidMount() {
   axios
-      .get('https://api.github.com/users/sydneyblom')
-      .then(res => {
-        this.setState({
-          userData: res.data.message
-        });
-      })
+   .get('https://api.github.com/users/sydneyblom')
+  .then((response) => {
+    console.log(response.data);
+
+  })
       .catch(err => console.log(err));
   }
 
