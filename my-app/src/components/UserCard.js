@@ -7,18 +7,28 @@ class UserCard extends React.Component {
     render() {
       return (
     <Card>
-    <Image src='/images/avatar/large/daniel.jpg' wrapped ui={false} />
+    <Image src= {this.props.userData.avatar_url} wrapped ui={false} />
     <Card.Content>
-      <Card.Header>Daniel</Card.Header>
-      <Card.Meta>Joined in 2016</Card.Meta>
+      <Card.Header>{this.props.userData.name}</Card.Header>
+      <Card.Meta>
+      {this.props.userData.login} 
+
+      </Card.Meta>
       <Card.Description>
-        Daniel is a comedian living in Nashville.
+      <p>
+        {this.props.userData.location} <br/> 
+        {this.props.userData.bio}  <br/>  
+        {this.props.userData.html_url}
+        
+      </p>
+     
       </Card.Description>
     </Card.Content>
     <Card.Content extra>
       <a>
         <Icon name='user' />
-        10 Friends
+        Followers: {this.props.userData.followers} <br/>
+        Following: {this.props.userData.following} 
       </a>
     </Card.Content>
   </Card>

@@ -4,19 +4,25 @@ import UserCard from './components/UserCard';
 import './App.css';
 
 
-class App extends React.Component {
-  state = {
-    userData: {},
-  };
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      userData: {}
+    }
+  }
 
 
   componentDidMount() {
   axios
-   .get('https://api.github.com/users/sydneyblom')
-  .then((response) => {
-    console.log(response.data);
-
-  })
+   .get(`https://api.github.com/users/sydneyblom`)
+.then(res => {
+  this.setState({
+        userData: res.data,
+  });
+  console.log(res);
+})
       .catch(err => console.log(err));
   }
 
@@ -25,7 +31,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <UserCard />
+        <UserCard userData={this.state.userData}  />
       </div>
     );
   }
