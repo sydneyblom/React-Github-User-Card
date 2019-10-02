@@ -1,14 +1,16 @@
 import React from 'react';
-import FollowerCard from './FollowerCard';
+import UserCard from './UserCard';
 
 class Followers extends React.Component {
+
+
     render() { 
         return ( 
             <div>
                 {
                     this.props.follower.map(newFollower => {
                         return (
-                            <FollowerCard newFollower={newFollower}/>
+                            <UserCard key={newFollower.id} userData={newFollower}/>
                         )
                     })
                 }

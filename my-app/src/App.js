@@ -3,9 +3,9 @@ import axios from 'axios';
 import UserCard from './components/UserCard';
 import Followers from './components/Followers';
 import './App.css';
-import { Grid } from 'semantic-ui-react';
 
 
+import { Card } from 'semantic-ui-react';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -23,32 +23,37 @@ class App extends React.Component {
   this.setState({
         userData: res.data,
   });
-  console.log(res);
 })
 
 axios.get(`https://api.github.com/users/sydneyblom/followers`)
 .then(res => {
-  this.setState({
-    followers: res.data,
-  });
-  console.log(res);
+
+  res.data.forEach(data => {
+    axios.get(data.url)
+    .then(resFollower => {
+      this.setState({
+       followers: [...this.state.followers, resFollower.data]
+      });
+    }
+  ).catch(err => console.log(err));
 })
+}).catch(err => console.log(err));
+ 
 
-      .catch(err => console.log(err));
-  }
-
-
+}
 
   render() {
     return (
+
+  
       <div className="App">
-  <Grid>
+
         <UserCard userData={this.state.userData}  />
-</Grid>
+
 <Followers follower={this.state.followers} />  
 
       </div>
-    );
+  );
   }
 }
 
