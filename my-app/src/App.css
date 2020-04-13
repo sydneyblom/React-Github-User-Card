@@ -1,0 +1,25 @@
+.App {
+  text-align: center;
+  
+
+}
+.card-container {
+  display: flex;
+  justify-content: center;
+  padding: 2% 30%;
+}
+
+.card {
+  width: 70%;
+  height: auto;
+border: 2px solid black;
+}
+
+
+.card img {
+  width: 50%;
+  height: auto;
+  padding: 5%;
+}
+
+
